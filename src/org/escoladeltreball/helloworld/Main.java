@@ -1,9 +1,8 @@
-/* GIT PUSH TEST 1
-
 /**
  * 
  */
 package org.escoladeltreball.helloworld;
+import java.util.*;
 
 /**
  * @author jmendez
@@ -16,8 +15,9 @@ public final class Main implements Utils {
 	 */
 	public static void main(String[] args) {
 //
-//		int[] v = { 2, 3, 4, 5, 3, 2, 1 };
-//		Main main = new Main();
+		int[] v = { 1,2,3,5,6 };
+		Main main = new Main();
+		System.out.println(Arrays.toString(main.merge(v,4)));
 //		System.out.println(main.findSmallest(v));
 	}
 
@@ -57,9 +57,34 @@ public final class Main implements Utils {
 		return counter;
 	}
 
-	
+	@Override
 	public double frequencyPercentage(int[] values, int n) {
-		return ((double) frequency(values, n)) / values.length;
+		return ((double) frequency(values, n)) / values.length * 100;
+	}
+	
+	@Override
+	public boolean isPresent(int[] values, int n) {
+		for (int value: values) {
+			if (value == n) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	@Override
+	public int[] merge(int[] values, int n) {
+		int j = values[values.length-1];
+		ArrayList ovalues = new ArrayList(values.length+1);
+		for (int i = 0; i < values.length-1; i++) {
+			if (n > values[i] && n < values[i+1]) {
+				ovalues.add(n);
+			} else {
+				ovalues.add(values[i]);
+			}
+		}
+		return ovalues.toArray();
+		
 	}
 
 
